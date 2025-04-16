@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """Creating a list of Pascal's Triangle integers"""
 
 def pascal_triangle(n):
@@ -7,18 +6,19 @@ def pascal_triangle(n):
     Returns a list of integers representing Pascal's triangle of n
 
     """
-    triangle = []
+    if n <= 0:
+        return []
 
-    for row_num in range(n):
-        row = [1]
+    triangle = [[1]] 
 
-        if row_num > 0:
-            prev_row = triangle[row_num - 1]
-            for i in range(1, row_num):
-                row.append(prev_row[i - 1] + prev_row[i])
+    for i in range(1, n):
+        prev_row = triangle[-1]
+        new_row = [1]
 
-        if row_num != 0:
-            row.append(1)
-        triangle.append(row)
+        for j in range(1, i):
+            new_row.append(prev_row[j - 1] + prev_row[j])
+
+        new_row.append(1)
+        triangle.append(new_row)
 
     return triangle
